@@ -1,1 +1,2 @@
-/networkWarden/target/
+target/
+nb-configuration.xml
