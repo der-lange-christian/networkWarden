@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -16,9 +18,13 @@ public class Upload {
     @Id
     @GeneratedValue
     private long id;
+    @Size(min=1, max=256)
     private String date;    
+    @NotNull
     private String language;
+    @Size(min=1, max=256)
     private String title;
+    @Size(min=1)
     private String fileName;
 
     private static final String PREFIX = "networkwarden.business.importcontrol.entity.Upload.";
@@ -49,6 +55,26 @@ public class Upload {
 
     public String getFileName() {
         return fileName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
     
     

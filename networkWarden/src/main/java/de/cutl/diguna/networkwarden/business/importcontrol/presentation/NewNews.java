@@ -21,14 +21,10 @@ import org.primefaces.model.UploadedFile;
  */
 @Model
 public class NewNews {
-
-    private String date;
     
-    private String languageSelect;
+    private Upload upload;
     
     private List<String> languages;
-    
-    private String title;
     
     private UploadedFile file;
     
@@ -37,23 +33,20 @@ public class NewNews {
             
     @PostConstruct
     public void init() {
-        date = "2015_12_21";
+        String date = "2015_12_21";
         
         languages = new ArrayList<>();
         languages.add("English");
         languages.add("Lugbara");
         languages.add("Kakwa");
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+        
+        upload = new Upload(date, null, null, null);
     }
     
     private File saveFile(UploadedFile file) throws Exception {
+        if (file.getFileName().isEmpty()) {
+            return new File("");
+        }
         File savedFile = new File("/home/chris/tmp/upload/", file.getFileName());
         file.write(savedFile.getAbsolutePath());
         
@@ -61,45 +54,29 @@ public class NewNews {
     }
     
     public Object save() throws Exception {
-        System.out.println("Date:     " + date);
-        System.out.println("Language: " + languageSelect);
-        System.out.println("title:    " + title);
+        System.out.println("Date:     " + upload.getDate());
+        System.out.println("Language: " + upload.getLanguage());
+        System.out.println("title:    " + upload.getTitle());
         System.out.println("file:     " + file);
         
         File savedFile = saveFile(file);
         
-        Upload up = new Upload(date, languageSelect, title, savedFile.getAbsolutePath());
+        Upload up = new Upload(upload.getDate(), upload.getLanguage(), upload.getTitle(), savedFile.getAbsolutePath());
         
         upManager.addUpload(up);
         
         return null;
     }
 
-    public void setLanguageSelect(String languageSelect) {
-        this.languageSelect = languageSelect;
-    }
-
-    public String getLanguageSelect() {
-        return languageSelect;
-    }
-
     public List<String> getLanguages() {
         return languages;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
     }
     
     public void handleFileUpload(FileUploadEvent event) {
         
-        System.out.println("Date:     " + date);
-        System.out.println("Language: " + languageSelect);
-        System.out.println("title:    " + title);
+        System.out.println("Date:     " + upload.getDate());
+        System.out.println("Language: " + upload.getLanguage());
+        System.out.println("title:    " + upload.getTitle());
         
         try {
             UploadedFile file = event.getFile();
@@ -127,6 +104,14 @@ public class NewNews {
 
     public void setFile(UploadedFile file) {
         this.file = file;
+    }
+
+    public Upload getUpload() {
+        return upload;
+    }
+
+    public void setUpload(Upload upload) {
+        this.upload = upload;
     }
     
     
