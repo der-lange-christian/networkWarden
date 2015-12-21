@@ -32,7 +32,7 @@
             </h:panelGrid>
             
             
-            <p:dataTable var="upload" value="#{newNews.uploads}" sortBy="#{upload.id}">
+            <p:dataTable var="upload" value="#{newNews.uploads}" sortBy="#{upload.id}" sortOrder="descending">
                 <p:column resizable="true">
                     <f:facet name="header">
                         <h:outputText value="Date" />
