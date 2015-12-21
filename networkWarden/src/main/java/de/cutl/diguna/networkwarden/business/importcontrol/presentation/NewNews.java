@@ -55,7 +55,7 @@ public class NewNews {
     
     private File saveFile(UploadedFile file) throws Exception {
         if (file.getFileName().isEmpty()) {
-            return new File("");
+            return null;
         }
         File savedFile = new File("/home/chris/tmp/upload/", file.getFileName());
         file.write(savedFile.getAbsolutePath());
@@ -70,12 +70,19 @@ public class NewNews {
         System.out.println("file:     " + file);
         
         File savedFile = saveFile(file);
-        
-        Upload up = new Upload(upload.getDate(), upload.getLanguage(), upload.getTitle(), savedFile.getAbsolutePath());
-        
-        upManager.addUpload(up);
+        if (savedFile == null) {
+            showValidaionError("you have forgotten to add a file");
+        } else {
+            Upload up = new Upload(upload.getDate(), upload.getLanguage(), upload.getTitle(), savedFile.getAbsolutePath());
+            upManager.addUpload(up);   
+        }
         
         return null;
+    }
+    
+    public void showValidaionError(String content) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, content, content);
+        FacesContext.getCurrentInstance().addMessage("", message);
     }
 
     public List<String> getLanguages() {
