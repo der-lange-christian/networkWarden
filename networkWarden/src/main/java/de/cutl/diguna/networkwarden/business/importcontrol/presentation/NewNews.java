@@ -53,16 +53,22 @@ public class NewNews {
         this.date = date;
     }
     
+    private File saveFile(UploadedFile file) throws Exception {
+        File savedFile = new File("/home/chris/tmp/upload/", file.getFileName());
+        file.write(savedFile.getAbsolutePath());
+        
+        return savedFile;
+    }
+    
     public Object save() throws Exception {
         System.out.println("Date:     " + date);
         System.out.println("Language: " + languageSelect);
         System.out.println("title:    " + title);
         System.out.println("file:     " + file);
         
-        File savedFile = new File(file.getFileName());
-        file.write(savedFile.getAbsolutePath());
+        File savedFile = saveFile(file);
         
-        Upload up = new Upload(date, languageSelect, title, file.getFileName());
+        Upload up = new Upload(date, languageSelect, title, savedFile.getAbsolutePath());
         
         upManager.addUpload(up);
         
