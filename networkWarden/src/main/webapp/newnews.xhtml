@@ -13,24 +13,50 @@
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                 <p:outputLabel for="date" value="Date:" />
                 <p:inputMask id="date" value="#{newNews.date}" placeholder="yyyy_mm_dd" mask="9999_99_99"/>
-                
+
                 <p:outputLabel for="language" value="Language" />
                 <p:selectOneMenu id="language" value="#{newNews.languageSelect}">
                     <f:selectItem itemLabel="Select One" itemValue="" />
                     <f:selectItems value="#{newNews.languages}" />
                 </p:selectOneMenu>
-                
+
                 <p:outputLabel for="title" value="Title" />
                 <p:inputText id="title" value="#{newNews.title}" />
-                
+
                 <p:outputLabel for="file" value="File" />
                 <p:fileUpload id="file" value="#{newNews.file}" mode="simple" />
 
                 <p:commandButton value="save" action="#{newNews.save}" ajax="false"/>
-                
+
                 <p:growl id="messages" showDetail="true" />
             </h:panelGrid>
         </h:form>
+        <p:dataTable var="upload" value="#{newNews.uploads}">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Date" />
+                </f:facet>
+                <h:outputText value="#{upload.date}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Language" />
+                </f:facet>
+                <h:outputText value="#{upload.language}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Title" />
+                </f:facet>
+                <h:outputText value="#{upload.title}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="File" />
+                </f:facet>
+                <h:outputText value="#{upload.fileName}" />
+            </p:column>
+        </p:dataTable>
     </h:body>
 </html>
 

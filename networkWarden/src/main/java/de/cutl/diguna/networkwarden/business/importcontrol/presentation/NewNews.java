@@ -1,5 +1,7 @@
 package de.cutl.diguna.networkwarden.business.importcontrol.presentation;
 
+import de.cutl.diguna.networkwarden.business.importcontrol.controller.UploadManager;
+import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -27,9 +30,10 @@ public class NewNews {
     
     private String title;
     
-    private List<String> uploads;
-    
     private UploadedFile file;
+    
+    @Inject
+    private UploadManager upManager;
             
     @PostConstruct
     public void init() {
@@ -39,8 +43,6 @@ public class NewNews {
         languages.add("English");
         languages.add("Lugbara");
         languages.add("Kakwa");
-        
-        uploads = new ArrayList<>();
     }
 
     public String getDate() {
@@ -59,6 +61,10 @@ public class NewNews {
         
         File savedFile = new File(file.getFileName());
         file.write(savedFile.getAbsolutePath());
+        
+        Upload up = new Upload(date, languageSelect, title, file.getFileName());
+        
+        upManager.addUpload(up);
         
         return null;
     }
@@ -94,7 +100,7 @@ public class NewNews {
             File savedFile = new File(file.getFileName());
             file.write(savedFile.getAbsolutePath());
             
-            uploads.add(savedFile.getAbsolutePath());
+            //uploads.add(savedFile.getAbsolutePath());
             
             System.out.println("saved file: " + savedFile.getAbsolutePath());
             
@@ -105,12 +111,8 @@ public class NewNews {
         }
     }
 
-    public List<String> getUploads() {
-        return uploads;
-    }
-
-    public void setUploads(List<String> uploads) {
-        this.uploads = uploads;
+    public List<Upload> getUploads() {
+        return upManager.getUploads();
     }
 
     public UploadedFile getFile() {
