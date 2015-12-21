@@ -30,33 +30,42 @@
 
                 <p:growl id="messages" showDetail="true" />
             </h:panelGrid>
+            
+            
+            <p:dataTable var="upload" value="#{newNews.uploads}" sortBy="#{upload.id}">
+                <p:column resizable="true">
+                    <f:facet name="header">
+                        <h:outputText value="Date" />
+                    </f:facet>
+                    <h:outputText value="#{upload.date}" />
+                </p:column>
+                <p:column resizable="true">
+                    <f:facet name="header">
+                        <h:outputText value="Language" />
+                    </f:facet>
+                    <h:outputText value="#{upload.language}" />
+                </p:column>
+                <p:column resizable="true">
+                    <f:facet name="header">
+                        <h:outputText value="Title" />
+                    </f:facet>
+                    <h:outputText value="#{upload.title}" />
+                </p:column>
+                <p:column resizable="true">
+                    <f:facet name="header">
+                        <h:outputText value="File" />
+                    </f:facet>
+                    <h:outputText value="#{upload.fileName}" />
+                </p:column>
+                <p:column>
+                    <h:commandButton value="Download">
+                        <p:fileDownload value="#{newNews.download(upload.fileName)}" />
+                    </h:commandButton>
+                </p:column>
+            </p:dataTable>
+            
         </h:form>
-        <p:dataTable var="upload" value="#{newNews.uploads}" sortMode="multiple">
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Date" />
-                </f:facet>
-                <h:outputText value="#{upload.date}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Language" />
-                </f:facet>
-                <h:outputText value="#{upload.language}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Title" />
-                </f:facet>
-                <h:outputText value="#{upload.title}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="File" />
-                </f:facet>
-                <h:outputText value="#{upload.fileName}" />
-            </p:column>
-        </p:dataTable>
+        
     </h:body>
 </html>
 

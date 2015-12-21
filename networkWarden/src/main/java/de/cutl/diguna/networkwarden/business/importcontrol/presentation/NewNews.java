@@ -3,6 +3,14 @@ package de.cutl.diguna.networkwarden.business.importcontrol.presentation;
 import de.cutl.diguna.networkwarden.business.importcontrol.controller.UploadManager;
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +21,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -114,6 +124,13 @@ public class NewNews {
         this.upload = upload;
     }
     
-    
+    public StreamedContent download(String fileWithPath) throws FileNotFoundException {
+        FileInputStream fis = null;
+        System.out.println("---- download: " + fileWithPath);
+        File downloadFile = new File(fileWithPath);
+        fis = new FileInputStream(downloadFile);
+        StreamedContent stream = new DefaultStreamedContent(fis, "application/mp3", downloadFile.getName());
+        return stream;
+    }
     
 }

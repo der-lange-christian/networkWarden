@@ -76,6 +76,10 @@ public class Upload {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+    public long getId() {
+        return id;
+    }
     
     
 }
