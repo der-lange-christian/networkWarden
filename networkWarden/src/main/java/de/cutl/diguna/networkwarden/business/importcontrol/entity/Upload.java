@@ -1,5 +1,8 @@
 package de.cutl.diguna.networkwarden.business.importcontrol.entity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,6 +31,7 @@ public class Upload {
     private String fileName;
     private String filePath;
     private String uploadTime;
+    private long sizeInByte;
 
     private static final String PREFIX = "networkwarden.business.importcontrol.entity.Upload.";
     public static final String findAll = PREFIX + "findAll";
@@ -97,5 +101,18 @@ public class Upload {
 
     public void setUploadTime(String uploadTime) {
         this.uploadTime = uploadTime;
+    }
+
+    public long getSizeInByte() {
+        return sizeInByte;
+    }
+    
+    public String getFormattedSize() {
+        String str = String.format("%,d", sizeInByte);
+        return str;
+    }
+
+    public void setSizeInByte(long sizeInByte) {
+        this.sizeInByte = sizeInByte;
     }
 }

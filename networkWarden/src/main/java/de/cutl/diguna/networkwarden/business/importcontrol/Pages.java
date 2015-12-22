@@ -10,7 +10,8 @@ public enum Pages {
     NewNews,
     NewTalkshow,
     NewAdvertisement,
-    NewMusic;
+    NewMusic,
+    ShowUploads;
     
     private final String pageName;
     

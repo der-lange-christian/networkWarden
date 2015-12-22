@@ -6,12 +6,8 @@ import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,6 +29,9 @@ import org.primefaces.model.UploadedFile;
 @Model
 public class NewNews {
     
+    private static final DateTimeFormatter TODAY = DateTimeFormatter.ofPattern("yyyy_MM_dd");
+    private static final DateTimeFormatter NOW = DateTimeFormatter.ofPattern("HH:mm:ss");
+    
     private Upload upload;
     
     private List<String> languages;
@@ -47,7 +46,9 @@ public class NewNews {
             
     @PostConstruct
     public void init() {
-        String date = "2015_12_21";
+        LocalDateTime now = LocalDateTime.now();
+        
+        String date = now.format(TODAY);
         
         languages = new ArrayList<>();
         languages.add("English");
@@ -80,7 +81,15 @@ public class NewNews {
         if (savedFile == null) {
             showValidaionError("you have forgotten to add a file");
         } else {
-            Upload up = new Upload(upload.getUploadDate(), upload.getLanguage(), upload.getTitle(), savedFile.getAbsolutePath());
+            Upload up = new Upload(upload.getUploadDate(), upload.getLanguage(), upload.getTitle(), savedFile.getName());
+            up.setFilePath(savedFile.getAbsolutePath());
+            LocalDateTime now = LocalDateTime.now();
+            up.setUploadTime(now.format(NOW));
+            
+            long size = savedFile.length();
+            System.out.println("sie: " + size);
+            up.setSizeInByte(size);
+            
             upManager.addUpload(up);   
         }
         
@@ -94,28 +103,6 @@ public class NewNews {
 
     public List<String> getLanguages() {
         return languages;
-    }
-    
-    public void handleFileUpload(FileUploadEvent event) {
-        
-        System.out.println("Date:     " + upload.getUploadDate());
-        System.out.println("Language: " + upload.getLanguage());
-        System.out.println("title:    " + upload.getTitle());
-        
-        try {
-            UploadedFile file = event.getFile();
-            File savedFile = new File(file.getFileName());
-            file.write(savedFile.getAbsolutePath());
-            
-            //uploads.add(savedFile.getAbsolutePath());
-            
-            System.out.println("saved file: " + savedFile.getAbsolutePath());
-            
-            FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        } catch (Exception ex) {
-            Logger.getLogger(FileUploadView.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public List<Upload> getUploads() {

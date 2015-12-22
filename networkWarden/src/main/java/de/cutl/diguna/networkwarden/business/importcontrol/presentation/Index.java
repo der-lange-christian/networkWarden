@@ -43,6 +43,10 @@ public class Index {
         return Pages.NewMusic.getPageName();
     }
     
+    public Object showuploads() {
+        return Pages.ShowUploads.getPageName();
+    }
+    
     public Object save() {
         return null;
     }
