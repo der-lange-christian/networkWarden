@@ -19,13 +19,15 @@ public class Upload {
     @GeneratedValue
     private long id;
     @Size(min=1, max=256)
-    private String date;    
+    private String uploadDate;    
     @NotNull
     private String language;
     @Size(min=1, max=256)
     private String title;
     @Size(min=1)
     private String fileName;
+    private String filePath;
+    private String uploadTime;
 
     private static final String PREFIX = "networkwarden.business.importcontrol.entity.Upload.";
     public static final String findAll = PREFIX + "findAll";
@@ -35,14 +37,14 @@ public class Upload {
     }
 
     public Upload(String date, String language, String title, String fileName) {
-        this.date = date;
+        this.uploadDate = date;
         this.language = language;
         this.title = title;
         this.fileName = fileName;
     }
 
-    public String getDate() {
-        return date;
+    public String getUploadDate() {
+        return uploadDate;
     }
 
     public String getLanguage() {
@@ -61,8 +63,8 @@ public class Upload {
         this.id = id;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setUploadDate(String date) {
+        this.uploadDate = date;
     }
 
     public void setLanguage(String language) {
@@ -80,6 +82,20 @@ public class Upload {
     public long getId() {
         return id;
     }
-    
-    
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(String uploadTime) {
+        this.uploadTime = uploadTime;
+    }
 }

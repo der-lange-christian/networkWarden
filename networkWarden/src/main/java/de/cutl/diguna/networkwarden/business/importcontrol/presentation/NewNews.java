@@ -1,5 +1,6 @@
 package de.cutl.diguna.networkwarden.business.importcontrol.presentation;
 
+import de.cutl.diguna.networkwarden.business.importcontrol.Configuration;
 import de.cutl.diguna.networkwarden.business.importcontrol.controller.UploadManager;
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.io.File;
@@ -40,6 +41,9 @@ public class NewNews {
     
     @Inject
     private UploadManager upManager;
+    
+    @Inject
+    private Configuration config;
             
     @PostConstruct
     public void init() {
@@ -51,20 +55,23 @@ public class NewNews {
         languages.add("Kakwa");
         
         upload = new Upload(date, null, null, null);
+        
+        config.printConfig();
+        System.out.println("test");
     }
     
     private File saveFile(UploadedFile file) throws Exception {
         if (file.getFileName().isEmpty()) {
             return null;
         }
-        File savedFile = new File("/home/chris/tmp/upload/", file.getFileName());
+        File savedFile = new File(config.getNewNewsDestinationFolder(), file.getFileName());
         file.write(savedFile.getAbsolutePath());
         
         return savedFile;
     }
     
     public Object save() throws Exception {
-        System.out.println("Date:     " + upload.getDate());
+        System.out.println("Date:     " + upload.getUploadDate());
         System.out.println("Language: " + upload.getLanguage());
         System.out.println("title:    " + upload.getTitle());
         System.out.println("file:     " + file);
@@ -73,7 +80,7 @@ public class NewNews {
         if (savedFile == null) {
             showValidaionError("you have forgotten to add a file");
         } else {
-            Upload up = new Upload(upload.getDate(), upload.getLanguage(), upload.getTitle(), savedFile.getAbsolutePath());
+            Upload up = new Upload(upload.getUploadDate(), upload.getLanguage(), upload.getTitle(), savedFile.getAbsolutePath());
             upManager.addUpload(up);   
         }
         
@@ -91,7 +98,7 @@ public class NewNews {
     
     public void handleFileUpload(FileUploadEvent event) {
         
-        System.out.println("Date:     " + upload.getDate());
+        System.out.println("Date:     " + upload.getUploadDate());
         System.out.println("Language: " + upload.getLanguage());
         System.out.println("title:    " + upload.getTitle());
         

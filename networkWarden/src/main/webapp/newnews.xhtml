@@ -12,7 +12,7 @@
         <h:form enctype="multipart/form-data">
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                 <p:outputLabel for="date" value="Date:" />
-                <p:inputMask id="date" value="#{newNews.upload.date}" placeholder="yyyy_mm_dd" mask="9999_99_99"/>
+                <p:inputMask id="date" value="#{newNews.upload.uploadDate}" placeholder="yyyy_mm_dd" mask="9999_99_99"/>
 
                 <p:outputLabel for="language" value="Language" />
                 <p:selectOneMenu id="language" value="#{newNews.upload.language}">
@@ -37,7 +37,7 @@
                     <f:facet name="header">
                         <h:outputText value="Date" />
                     </f:facet>
-                    <h:outputText value="#{upload.date}" />
+                    <h:outputText value="#{upload.uploadDate}" />
                 </p:column>
                 <p:column resizable="true">
                     <f:facet name="header">
