@@ -1,5 +1,6 @@
 package de.cutl.diguna.networkwarden.business.importcontrol.controller;
 
+import de.cutl.diguna.networkwarden.business.importcontrol.Configuration;
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UploadManager {
-
-    @PersistenceContext
+    
+    @PersistenceContext(unitName = Configuration.DATA_BASE)
     EntityManager em;
 
     public List<Upload> getUploads() {

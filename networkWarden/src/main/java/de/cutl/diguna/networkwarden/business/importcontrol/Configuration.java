@@ -21,6 +21,8 @@ public class Configuration {
     
     private static final String SYSTEM_PROP_NAME="networkWardenConfig";
     private Properties config;
+    
+    public static final String DATA_BASE = "test";
 
     @PostConstruct
     public void init() {
@@ -57,5 +59,9 @@ public class Configuration {
     
     public String getNewNewsDestinationFolder() {
         return config.getProperty("newNewsDestinationFolder", "not configured");
+    }
+    
+    public String getDatabase() {
+        return config.getProperty("database", "prod");
     }
 }
