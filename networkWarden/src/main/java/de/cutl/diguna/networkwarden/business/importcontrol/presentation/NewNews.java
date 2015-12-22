@@ -76,6 +76,7 @@ public class NewNews {
         System.out.println("Language: " + upload.getLanguage());
         System.out.println("title:    " + upload.getTitle());
         System.out.println("file:     " + file);
+        System.out.println("test:     " + file);
         
         File savedFile = saveFile(file);
         if (savedFile == null) {

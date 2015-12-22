@@ -9,7 +9,17 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:dataTable var="upload" value="#{showUploads.uploads}" sortBy="#{upload.id}" sortOrder="descending">
+            <p:dataTable var="upload" value="#{showUploads.uploads}" 
+                         sortBy="#{upload.id}" 
+                         sortOrder="descending" 
+                         draggableColumns="true" 
+                         liveResize="true">
+                <p:column resizable="true">
+                    <f:facet name="header">
+                        <h:outputText value="Date" />
+                    </f:facet>
+                    <h:outputText value="#{upload.uploadDate}" />
+                </p:column>
                 <p:column resizable="true">
                     <f:facet name="header">
                         <h:outputText value="Date" />

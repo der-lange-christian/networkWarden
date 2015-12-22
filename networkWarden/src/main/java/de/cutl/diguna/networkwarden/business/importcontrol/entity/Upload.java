@@ -1,8 +1,5 @@
 package de.cutl.diguna.networkwarden.business.importcontrol.entity;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
