@@ -13,6 +13,7 @@ import javax.ejb.Singleton;
 /**
  *
  * inspired by
+ * 
  * - 
  * @author chris
  */
@@ -22,7 +23,7 @@ public class Configuration {
     private static final String SYSTEM_PROP_NAME="networkWardenConfig";
     private Properties config;
     
-    public static final String DATA_BASE = "test";
+    public static final String DATA_BASE = "prod";
 
     @PostConstruct
     public void init() {
