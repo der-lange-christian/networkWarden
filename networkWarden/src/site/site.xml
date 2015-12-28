@@ -16,7 +16,7 @@
             <sideBarEnabled>true</sideBarEnabled>
             <copyrightClass>pull-right</copyrightClass>
             <gitHub>
-                <projectId>p-goetz/english-numbers</projectId>
+                <projectId>der-lange-christian/networkWarden</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
                 <ribbonColor>orange</ribbonColor>
             </gitHub>
