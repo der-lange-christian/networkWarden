@@ -24,6 +24,7 @@ public class Configuration {
     private Properties config;
     
     public static final String DATA_BASE = "prod";
+    public static final String DATA_SOURCE = "jdbc/sampleDerbyPool";
 
     @PostConstruct
     public void init() {

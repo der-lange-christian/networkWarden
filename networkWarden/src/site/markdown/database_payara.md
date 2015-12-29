@@ -8,11 +8,11 @@
     --property portNumber=1527:password=cookbook:user=cookbookuser:serverName=localhost:databaseName=cookbookdb:connectionAttributes=;create\=true CookbookPool
 
 
-# Anlegen 
+# Anlegen einer Verbindung auf dem Application-Server
 
-./asadmin create-jdbc-connection-pool                                     \
+./asadmin create-jdbc-connection-pool                           \
 --datasourceclassname org.apache.derby.jdbc.ClientDataSource    \
---restype javax.sql.XADataSource                                \
+--restype javax.sql.XADataSource                                \                                               \
 --property portNumber=1527:password=APP:user=APP:serverName=localhost:databaseName=sun-appserv-samples:connectionAttributes=\;create\\=true sample_derby_pool
 
 # Ansehen

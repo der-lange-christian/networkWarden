@@ -8,7 +8,6 @@
   <persistence-unit name="prod" transaction-type="JTA">
     <jta-data-source>jdbc/sampleDerbyPool</jta-data-source>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="none"/>
     </properties>
   </persistence-unit>
 </persistence>
