@@ -23,8 +23,11 @@ public class Configuration {
     private static final String SYSTEM_PROP_NAME="networkWardenConfig";
     private Properties config;
     
-    public static final String DATA_BASE = "prod";
-    public static final String DATA_SOURCE = "jdbc/sampleDerbyPool";
+    
+    public static final String DATA_BASE = "test";
+    public static final String DATA_SOURCE = "jdbc/" + DATA_BASE;
+    
+    
 
     @PostConstruct
     public void init() {

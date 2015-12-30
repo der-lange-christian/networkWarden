@@ -29,12 +29,29 @@ public class JeeDbMigrator {
                     "no datasource found to execute the db migrations!");
         }
  
+        doFlyway();
+        
+    }
+    
+    private void doFlyway() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
         
+        if (Configuration.DATA_BASE.equals("test")) {
+            removeExistingDatabase(flyway);
+            updateDatabase(flyway);
+        } else {
+            updateDatabase(flyway);
+        }
+    }
+    
+    private void removeExistingDatabase(Flyway flyway) {
         // only for first run to clean Database
-        //flyway.clean();
-        
+        //
+        flyway.clean();
+    }
+
+    private void updateDatabase(Flyway flyway) {
         for (MigrationInfo i : flyway.info().all()) {
             log.info("migrate task: " + i.getVersion() + " : "
                     + i.getDescription() + " from file: " + i.getScript());

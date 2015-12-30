@@ -38,5 +38,8 @@
 # ij - connection to Derby-DB
 ./ij
 connect 'jdbc:derby://localhost:1527/sun-appserv-samples';
+connect 'jdbc:derby://localhost:1527/embedded_default';
 select * from SYS.SYSTABLES;
+
+connect 'jdbc:derby://localhost:1530/diguna';
 

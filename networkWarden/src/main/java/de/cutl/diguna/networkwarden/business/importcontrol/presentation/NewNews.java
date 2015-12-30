@@ -6,18 +6,18 @@ import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -66,7 +66,16 @@ public class NewNews {
             return null;
         }
         File savedFile = new File(config.getNewNewsDestinationFolder(), file.getFileName());
-        file.write(savedFile.getAbsolutePath());
+        System.out.println("destination: " + savedFile.getAbsolutePath());
+        if (!savedFile.getParentFile().isDirectory()) {
+            boolean dirCreated = savedFile.getParentFile().mkdirs();
+            System.out.println(dirCreated + ": " + savedFile.getParentFile());
+        } else {
+            System.out.println(savedFile.getParentFile() + " is a directory");
+        }
+        //file.write(savedFile.getAbsolutePath()); // not working in payara 4.1.1.154
+        Files.copy(file.getInputstream(), Paths.get(savedFile.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("file saved: " + savedFile.getAbsolutePath());
         
         return savedFile;
     }

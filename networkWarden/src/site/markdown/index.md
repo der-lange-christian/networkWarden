@@ -4,6 +4,8 @@
 - [Database-Overview](database.html)
 - [Database-Payara-Overview](database_payara.html)
 
+- create war: mvn package
+
 Dieses Maven Projekt bildet das arc42 Template zur Dokumentation von Software Architekturen ab. Die Dokumentation wird
 dabei in [Markdown](http://markdown.de/) erstellt, graphische Modelle (z.B. in UML) können mit
 [PlantUML](http://plantuml.sourceforge.net/) notiert werden und werden beim Build von Maven als Grafiken gerendert und
