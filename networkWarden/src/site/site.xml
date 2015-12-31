@@ -31,6 +31,9 @@
     </custom>
 
     <body>
+        <head>
+            <script type="text/javascript" src="../js/toc.js"></script>
+        </head>
   
         <links>
             <item name="arc42" href="http://www.arc42.de/"/>
