@@ -34,10 +34,13 @@
         <head>
             <script type="text/javascript" src="../js/toc.js"></script>
             <style type="text/css">
-                
-                div.section { width:660px; float:right;}
-                #toc { width:300px; position:fixed; float:left;}
+                div.section { width:660px;}
+                #toc { width:300px; bottom: 0; right: 0; position:fixed; background-color: black;}
                 #toc a { display:block; color:#0094FF;}
+                #toc a[title=H3] { font-size:14px; }
+                #toc a[title=H4] { font-size:12px; margin: 0px 0px 0px 10px; }
+                #toc a[title=H5] { font-size:10px; margin: 0px 0px 0px 20px; }
+                #toc a[title=H6] { font-size:8px; margin: 0px 0px 0px 30px; }
             </style>
         </head>
   
