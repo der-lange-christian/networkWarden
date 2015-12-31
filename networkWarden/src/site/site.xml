@@ -33,6 +33,12 @@
     <body>
         <head>
             <script type="text/javascript" src="../js/toc.js"></script>
+            <style type="text/css">
+                
+                div.section { width:660px; float:right;}
+                #toc { width:300px; position:fixed; float:left;}
+                #toc a { display:block; color:#0094FF;}
+            </style>
         </head>
   
         <links>
