@@ -95,12 +95,15 @@ bin/asadmin set configs.config.default-config.network-config.network-listeners.n
 
 Die Daten werden in der mit dem Payara-Server mitgelieferten Derby-DB gespeichert.
 Die Datenbank wird übers Netzwerk angesprochen. Ensprechend müssen im Server
+
 - JDBC Connection Pool und
 - JDBC Resource eingerichtet
+
 werden.
 
 
 - Starten der Datenbank:
+
 ```bash
 cd $PAYARA_HOME
 bin/asadmin start-database --dbhost localhost --dbport 1527
@@ -147,6 +150,7 @@ bin/asadmin delete-jdbc-connection-pool test
 ```
 
 - persistence.xml:
+
 ```xml
   <persistence-unit name="test" transaction-type="JTA">
     <jta-data-source>jdbc/test</jta-data-source>
@@ -181,6 +185,7 @@ bin/asadmin delete-jdbc-connection-pool diguna
 ```
 
 - persistence.xml:
+
 ```xml
   <persistence-unit name="diguna" transaction-type="JTA">
     <jta-data-source>jdbc/diguna</jta-data-source>
@@ -193,14 +198,20 @@ bin/asadmin delete-jdbc-connection-pool diguna
 
 Um die Datenbank immer mit dem Aktuellen Schema zu betreiben wird Flyway genutzt.
 Die Klasse 
+
 - de.cutl.diguna.networkwarden.business.databaseupdates.JeeDbMigrator
+
 wird automatisch beim Start der Anwendung ausgeführt (@Startup Annotation) und
 sorgt dafür, dass die Datenbankscripte ausgeführt werden, falls dies noch nicht
 geschehen ist.
 Die Scripte liegen unter:
-- src/main/resources/db/migration/*
+
+- src/main/resources/db/migration/\*
+
 und sind mit dem folgenden Namens-Schema benannt:
-- V<vvv>__<name_of_change>.sql
+
+- V*${vvv}*__*${name_of_change}*.sql
+
 Als Hilfestellung zum Erzeugen können die Definitionen für die Test-Datenbank
 mittels dblook ausgelesen werden.
 
@@ -244,6 +255,7 @@ mittels dblook ausgelesen werden.
 #### Skalierung, Clustering
 
 JConsole für prüffung der Performance
-- "service:jmx:rmi://jndi/rmi:/localhost:8686/jmxrmi"
+
+- '''service:jmx:rmi://jndi/rmi:/localhost:8686/jmxrmi'''
 
 #### Hochverfügbarkeit
