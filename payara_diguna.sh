@@ -1,25 +1,27 @@
 #!/bin/bash
 
 cmd=bin/asadmin
-db_name=diguna
+db_name=test
 db_port=1527
 db_pass=APP
 db_user=APP
-db_pool_name=diguna
-jdbc_name=jdbc/diguna
+db_pool_name=test
+jdbc_name=jdbc/test
 
 
-# create and start domain
-#$cmd create-domain diguna
-#$cmd delete-domain diguna
-#$cmd start-domain diguna
-#$cmd stop-domain diguna
-
-# start database
-#$cmd start-database --dbhost localhost --dbport $db_port
-#$cmd stop-database --dbhost localhost --dbport $db_port
-
-# create JDBC Connection Pool
+echo " "
+echo "# create and start domain"
+echo "$cmd create-domain diguna"
+echo "$cmd delete-domain diguna"
+echo "$cmd start-domain diguna"
+echo "$cmd stop-domain diguna"
+echo " "
+echo "# start database"
+echo "$cmd start-database --dbhost localhost --dbport $db_port"
+echo "$cmd stop-database --dbhost localhost --dbport $db_port"
+echo " "
+echo " "
+echo "# create JDBC Connection Pool"
 echo " "
 echo "# create JDBC Connection Pool"
 echo "$cmd create-jdbc-connection-pool --datasourceclassname org.apache.derby.jdbc.ClientDataSource --restype javax.sql.XADataSource --property portNumber=$db_port:password=$db_pass:user=$db_user:serverName=localhost:databaseName=$db_name:connectionAttributes=\;create\\\\=true $db_pool_name"
@@ -47,4 +49,12 @@ echo "establich connection"
 echo "javadb/bin/ij"
 echo "   ij> connect 'jdbc:derby://localhost:$db_port/$db_name';"
 echo "   ij> select * from SYS.SYSTABLES;"
+echo " "
+
+echo " "
+echo "# Deploy war"
+echo "$cmd deploy test.war"
+echo " "
+echo "# UnDeploy Application"
+echo "$cmd undeploy test"
 echo " "

@@ -24,7 +24,7 @@ public class Configuration {
     private Properties config;
     
     
-    public static final String DATA_BASE = "test";
+    public static final String DATA_BASE = "diguna"; // test
     public static final String DATA_SOURCE = "jdbc/" + DATA_BASE;
     
     
