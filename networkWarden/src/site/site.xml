@@ -11,9 +11,16 @@
         <artifactId>maven-fluido-skin</artifactId>
         <version>1.4</version>
     </skin>
+    
     <custom>
         <fluidoSkin>
+            <topBarEnabled>true</topBarEnabled>
             <sideBarEnabled>true</sideBarEnabled>
+            <navBarStyle>navbar-inverse</navBarStyle>
+            <leftColumnClass>span3</leftColumnClass>
+            <bodyColumnClass>span9</bodyColumnClass>
+            <breadcrumbDivider>»</breadcrumbDivider>
+            
             <copyrightClass>pull-right</copyrightClass>
             <gitHub>
                 <projectId>der-lange-christian/networkWarden</projectId>
@@ -24,6 +31,7 @@
     </custom>
 
     <body>
+  
         <links>
             <item name="arc42" href="http://www.arc42.de/"/>
             <item name="Markdown" href="http://markdown.de/"/>
@@ -47,5 +55,6 @@
             </item>
         </menu>
         <menu ref="reports"/>
+        <footer>SDG</footer>
     </body>
 </project>

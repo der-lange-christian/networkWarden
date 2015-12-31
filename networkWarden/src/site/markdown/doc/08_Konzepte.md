@@ -3,17 +3,6 @@
 Es wird der Payara Java EE 7 konforme Applikationsserver verwendet. Für die
 Konfiguration wird möglichst immer auf das asadmin-Tool zurückgegriffen.
 
-```java
-package test
-
-public class Test {
-  
-  static public void main(String[] args) {
-    System.out.println("test");
-  }
-}
-```
-
 ```bash
 cd $PAYARA_HOME
 bin/asadmin create-domain diguna  # templates are possible
