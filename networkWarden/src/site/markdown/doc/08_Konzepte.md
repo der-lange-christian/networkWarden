@@ -218,6 +218,9 @@ mittels dblook ausgelesen werden.
 
 #### Benutzungsoberfläche
 
+Ist der Browser. Er dient als Schnittstelle. Es wird JSF mit PrimeFaces
+für die Darstellung verwendet.
+
 #### Ergonomie
 
 #### Ablaufsteuerung
