@@ -29,6 +29,7 @@ public class JeeDbMigrator {
                     "no datasource found to execute the db migrations!");
         }
  
+        
         doFlyway();
         
     }
@@ -36,12 +37,17 @@ public class JeeDbMigrator {
     private void doFlyway() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
-        
-        if (Configuration.DATA_BASE.equals("test")) {
-            removeExistingDatabase(flyway);
-            updateDatabase(flyway);
-        } else {
-            updateDatabase(flyway);
+        switch (Configuration.DATA_BASE) {
+            case Configuration.DB_TEST_DROP_AND_CREATE:
+                // do nothing
+                break;
+            case Configuration.DB_TEST:
+                removeExistingDatabase(flyway);
+                updateDatabase(flyway);
+                break;
+            default:
+                updateDatabase(flyway);
+                break;
         }
     }
     
