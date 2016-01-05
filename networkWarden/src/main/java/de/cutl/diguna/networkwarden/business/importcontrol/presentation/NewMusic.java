@@ -44,9 +44,23 @@ public class NewMusic extends Uploader {
     public Object save() throws Exception {
         
         File savedFile = saveFile(file, config.getNewNewsDestinationFolder());
+        boolean elementMissing = false;
+        System.out.println("album-name: \"" + upload.getAlbumName() + "\"");
+        System.out.println("album-name: \"" + upload.getArtist() + "\"");
+        
+        if (upload.getAlbumName().isEmpty()) {
+            elementMissing = true;
+            showValidaionError("album", "you have forgotten the album");
+        }
+        if (upload.getArtist().isEmpty()) {
+            elementMissing = true;
+            showValidaionError("artist", "you have forgotten the artist");
+        }
         if (savedFile == null) {
-            showValidaionError("you have forgotten to add a file");
-        } else {
+            elementMissing = true;
+            showValidaionError("file", "you have forgotten to add a file");
+        } 
+        if (!elementMissing) {
             UploadMusic up = new UploadMusic();
             up.setLanguage(upload.getLanguage());
             up.setFilePath(savedFile.getAbsolutePath());

@@ -46,7 +46,7 @@ public class NewNews extends Uploader {
         
         File savedFile = saveFile(file, config.getNewNewsDestinationFolder());
         if (savedFile == null) {
-            showValidaionError("you have forgotten to add a file");
+            showValidaionError("file", "you have forgotten to add a file");
         } else {
             UploadNews up = new UploadNews(upload.getUploadDate(), upload.getTitle(), savedFile.getName());
             up.setLanguage(upload.getLanguage());

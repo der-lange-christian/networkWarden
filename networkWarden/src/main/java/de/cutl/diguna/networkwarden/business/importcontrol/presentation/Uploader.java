@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.primefaces.model.DefaultStreamedContent;
@@ -82,10 +84,9 @@ public class Uploader {
     
     
     
-    public void showValidaionError(String content) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, content, content);
-        
-        FacesContext.getCurrentInstance().addMessage("file", message);
+    public void showValidaionError(String id, String content) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, content, content);
+        FacesContext.getCurrentInstance().addMessage("upload_form:" + id, message);
     }
     
     

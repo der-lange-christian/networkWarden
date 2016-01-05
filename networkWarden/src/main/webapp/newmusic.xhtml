@@ -9,26 +9,35 @@
     </h:head>
     <h:body>
         <h1>add new music</h1>
-        <h:form enctype="multipart/form-data">
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <h:form enctype="multipart/form-data" id="upload_form">
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
                 <p:outputLabel for="title" value="Title:" />
                 <p:inputText id="title" value="#{newMusic.upload.title}" />
+                <p:message for="title" display="text" />
 
                 <p:outputLabel for="language" value="Language" />
                 <p:selectOneMenu id="language" value="#{newMusic.upload.language}">
                     <f:selectItem itemLabel="Select One" itemValue="" />
                     <f:selectItems value="#{newMusic.languages}" />
                 </p:selectOneMenu>
+                <p:message for="language" display="text" />
 
                 <p:outputLabel for="album" value="Album:" />
-                <p:inputText id="album" value="#{newMusic.upload.albumName}" />
+                <p:inputText id="album" value="#{newMusic.upload.albumName}">
+                    <f:validateRequired/>
+                </p:inputText>
+                <p:message for="album" display="text" />
                 
                 <p:outputLabel for="artist" value="Artist:" />
-                <p:inputText id="artist" value="#{newMusic.upload.artist}" />
+                <p:inputText id="artist" value="#{newMusic.upload.artist}">
+                    <f:validateRequired/>
+                </p:inputText>
+                <p:message for="artist" display="text" />
                 
                 
                 <p:outputLabel for="file" value="File" />
                 <p:fileUpload id="file" value="#{newNews.file}" mode="simple" />
+                <p:message for="file" display="text" />
 
                 <p:commandButton value="save" action="#{newNews.save}" ajax="false"/>
 
