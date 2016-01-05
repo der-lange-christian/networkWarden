@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +34,8 @@ public class Configuration {
     public static final String DATA_BASE = DB_TEST_DROP_AND_CREATE;
     public static final String DATA_SOURCE = "jdbc/" + DATA_BASE;
     
+    
+    private List<String> languages;
     
 
     @PostConstruct
@@ -73,5 +77,25 @@ public class Configuration {
     
     public String getDatabase() {
         return config.getProperty("database", "prod");
+    }
+
+    public List<String> getLanguages() {
+        if (this.languages == null) {
+            languages = new ArrayList<>();
+
+            int i = 0;
+            while (true) {
+                String lang = config.getProperty("language" + i, "");
+                
+                if (lang.isEmpty()) {
+                    break;
+                } else {
+                    languages.add(lang);
+                    ++i;
+                }
+            }
+        }
+        
+        return languages;
     }
 }
