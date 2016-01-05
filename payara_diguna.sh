@@ -1,10 +1,10 @@
 #!/bin/bash
 
 cmd=bin/asadmin
-db_name=test
+db_name=diguna
 db_port=1527
-db_pass=APP
 db_user=APP
+db_pass=APP
 db_pool_name=testDropAndCreate
 jdbc_name=jdbc/$db_pool_name
 
