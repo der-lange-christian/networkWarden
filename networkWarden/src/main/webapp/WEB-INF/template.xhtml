@@ -6,12 +6,18 @@
     <h:head>
         <title>network warden</title>
         <meta charset="utf-8"/>
-        <h:outputStylesheet name="/screen.css" />
+        <h:outputStylesheet name="resources/screen.css" />
     </h:head>
     <h:body>
         <div id="container">
-            <div id="header">
-                <p>Beispielanwendung <b>network warden</b></p>
+            <div id="header" style="background: #006600; ">
+                <h1 style="color: white; padding: 15px; margin: 5px">Voice of Life - Network-Warden</h1>
+
+            </div>
+            <div id="line2" style="background: #FF3333; height: 8px; "></div>
+            <div id="line" style="background: #006600; height: 77px; margin-top: 4px">
+                <img style="padding-left:5px; padding-right:15px; padding-top:5px" id="header-image" src="resources/vol_logo.png" alt="header" align="left" />
+                <h1 style="color: white; margin-top: 5px;padding-top: 5px;padding-left: 5px;"><a href="..">back</a></h1>
             </div>
             <div id="content">
                 <ui:insert name="content">
@@ -19,7 +25,11 @@
                 </ui:insert>
             </div>
             <div id="footer">
-                <p>(C)2016 SDG</p>
+                <div id="line2" style="background: #FF3333; height: 8px; "></div>
+                <div id="line" style="background: #006600; height: 50px; margin-top: 5px">
+                    <span style="float: right;color: white; margin:5px">version: 1.0</span>
+                    <span style="float: left; color: white; margin:5px">SDG</span>
+                </div>
             </div>
         </div>
     </h:body>
