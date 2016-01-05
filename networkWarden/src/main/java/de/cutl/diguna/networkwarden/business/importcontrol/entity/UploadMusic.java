@@ -10,12 +10,25 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class UploadMusic extends Upload {
 
-    @NotNull
-    private String language;
-    @NotNull
-    private String title;
-    @NotNull
+    
     private String albumName;
-    @NotNull
     private String artist;
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+    
+    
 }

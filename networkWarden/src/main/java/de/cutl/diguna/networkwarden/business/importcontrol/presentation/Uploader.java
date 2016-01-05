@@ -2,7 +2,7 @@ package de.cutl.diguna.networkwarden.business.importcontrol.presentation;
 
 import de.cutl.diguna.networkwarden.business.importcontrol.Configuration;
 import de.cutl.diguna.networkwarden.business.importcontrol.controller.UploadManager;
-import de.cutl.diguna.networkwarden.business.importcontrol.entity.UploadNews;
+import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -31,8 +32,6 @@ public class Uploader {
 
     protected UploadedFile file;
     
-    protected UploadNews upload;
-    
     @Inject
     protected UploadManager upManager;
     
@@ -46,6 +45,20 @@ public class Uploader {
         String date = now.format(TODAY);
         
         return date;
+    }
+    
+    
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+    
+    public List<Upload> getUploads() {
+        return upManager.getUploads();
     }
     
     protected File saveFile(UploadedFile file, String destinationFolder) throws Exception {
@@ -67,37 +80,12 @@ public class Uploader {
         return savedFile;
     }
     
-    public Object save() throws Exception {
-        System.out.println("Date:     " + upload.getUploadDate());
-        System.out.println("Language: " + upload.getLanguage());
-        System.out.println("title:    " + upload.getTitle());
-        System.out.println("file:     " + file);
-        System.out.println("test:     " + file);
-        
-        File savedFile = saveFile(file, config.getNewNewsDestinationFolder());
-        if (savedFile == null) {
-            showValidaionError("you have forgotten to add a file");
-        } else {
-            UploadNews up = new UploadNews(upload.getUploadDate(), upload.getTitle(), savedFile.getName());
-            up.setLanguage(upload.getLanguage());
-            up.setFilePath(savedFile.getAbsolutePath());
-            LocalDateTime now = LocalDateTime.now();
-            up.setUploadTime(now.format(NOW));
-            
-            long size = savedFile.length();
-            System.out.println("sie: " + size);
-            up.setSizeInByte(size);
-            
-            upManager.addUpload(up);   
-        }
-        
-        return null;
-    }
     
     
     public void showValidaionError(String content) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, content, content);
-        FacesContext.getCurrentInstance().addMessage("", message);
+        
+        FacesContext.getCurrentInstance().addMessage("file", message);
     }
     
     

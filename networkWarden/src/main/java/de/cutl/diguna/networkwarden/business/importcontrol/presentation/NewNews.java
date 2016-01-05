@@ -2,11 +2,12 @@ package de.cutl.diguna.networkwarden.business.importcontrol.presentation;
 
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.UploadNews;
-import java.util.ArrayList;
+import static de.cutl.diguna.networkwarden.business.importcontrol.presentation.Uploader.NOW;
+import java.io.File;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -16,6 +17,8 @@ import org.primefaces.model.UploadedFile;
 public class NewNews extends Uploader {
 
     private List<String> languages;
+    
+    protected UploadNews upload;
 
     @PostConstruct
     public void init() {
@@ -31,24 +34,34 @@ public class NewNews extends Uploader {
         return languages;
     }
 
-    public List<Upload> getUploads() {
-        return upManager.getUploads();
-    }
-
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-
-    public UploadNews getUpload() {
+    public Upload getUpload() {
         return upload;
     }
 
     public void setUpload(UploadNews upload) {
         this.upload = upload;
+    }
+    
+    public Object save() throws Exception {
+        
+        File savedFile = saveFile(file, config.getNewNewsDestinationFolder());
+        if (savedFile == null) {
+            showValidaionError("you have forgotten to add a file");
+        } else {
+            UploadNews up = new UploadNews(upload.getUploadDate(), upload.getTitle(), savedFile.getName());
+            up.setLanguage(upload.getLanguage());
+            up.setFilePath(savedFile.getAbsolutePath());
+            LocalDateTime now = LocalDateTime.now();
+            up.setUploadTime(now.format(NOW));
+            
+            long size = savedFile.length();
+            System.out.println("sie: " + size);
+            up.setSizeInByte(size);
+            
+            upManager.addUpload(up);   
+        }
+        
+        return null;
     }
 
 }

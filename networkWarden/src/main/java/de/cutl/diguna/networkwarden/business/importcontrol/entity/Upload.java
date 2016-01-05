@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -17,21 +18,23 @@ public class Upload {
     @Id
     @GeneratedValue
     private long id;
-    @Size(min=1, max=256)
-    private String uploadDate;    
+    @Size(min = 1, max = 256)
+    private String uploadDate;
 
-    @Size(min=1, max=256)
+    @Size(min = 1, max = 256)
     private String title;
-    @Size(min=1)
+
+    @Size(min = 1)
     private String fileName;
     private String filePath;
     private String uploadTime;
     private long sizeInByte;
+    @NotNull
+    private String language;
 
     private static final String PREFIX = "networkwarden.business.importcontrol.entity.Upload.";
     public static final String findAll = PREFIX + "findAll";
-    
-    
+
     public Upload() {
     }
 
@@ -41,10 +44,17 @@ public class Upload {
         this.fileName = fileName;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public String getUploadDate() {
         return uploadDate;
     }
-
 
     public String getTitle() {
         return title;
@@ -93,7 +103,7 @@ public class Upload {
     public long getSizeInByte() {
         return sizeInByte;
     }
-    
+
     public String getFormattedSize() {
         String str = String.format("%,d", sizeInByte);
         return str;
