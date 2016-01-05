@@ -5,8 +5,8 @@ db_name=test
 db_port=1527
 db_pass=APP
 db_user=APP
-db_pool_name=test
-jdbc_name=jdbc/test
+db_pool_name=testDropAndCreate
+jdbc_name=jdbc/$db_pool_name
 
 
 echo " "
@@ -42,6 +42,14 @@ echo "$cmd delete-jdbc-resource $jdbc_name"
 echo "$cmd delete-jdbc-connection-pool $db_pool_name"
 echo " "
 
+echo " "
+echo " persistence.xml "
+echo "   <persistence-unit name=\"$db_pool_name\" transaction-type=\"JTA\">"
+echo "    <jta-data-source>$jdbc_name</jta-data-source>"
+echo "    <properties>"
+echo "      <property name=\"javax.persistence.schema-generation.database.action\" value=\"drop-and-create\"/>"
+echo "    </properties>"
+echo " "
 
 
 echo " "
