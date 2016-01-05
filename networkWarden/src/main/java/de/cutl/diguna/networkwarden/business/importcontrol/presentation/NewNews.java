@@ -3,6 +3,7 @@ package de.cutl.diguna.networkwarden.business.importcontrol.presentation;
 import de.cutl.diguna.networkwarden.business.importcontrol.Configuration;
 import de.cutl.diguna.networkwarden.business.importcontrol.controller.UploadManager;
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
+import de.cutl.diguna.networkwarden.business.importcontrol.entity.UploadNews;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,7 +33,7 @@ public class NewNews {
     private static final DateTimeFormatter TODAY = DateTimeFormatter.ofPattern("yyyy_MM_dd");
     private static final DateTimeFormatter NOW = DateTimeFormatter.ofPattern("HH:mm:ss");
     
-    private Upload upload;
+    private UploadNews upload;
     
     private List<String> languages;
     
@@ -55,7 +56,7 @@ public class NewNews {
         languages.add("Lugbara");
         languages.add("Kakwa");
         
-        upload = new Upload(date, null, null, null);
+        upload = new UploadNews();
         
         config.printConfig();
         System.out.println("test");
@@ -91,7 +92,8 @@ public class NewNews {
         if (savedFile == null) {
             showValidaionError("you have forgotten to add a file");
         } else {
-            Upload up = new Upload(upload.getUploadDate(), upload.getLanguage(), upload.getTitle(), savedFile.getName());
+            UploadNews up = new UploadNews(upload.getUploadDate(), upload.getTitle(), savedFile.getName());
+            up.setLanguage(upload.getLanguage());
             up.setFilePath(savedFile.getAbsolutePath());
             LocalDateTime now = LocalDateTime.now();
             up.setUploadTime(now.format(NOW));
@@ -127,11 +129,11 @@ public class NewNews {
         this.file = file;
     }
 
-    public Upload getUpload() {
+    public UploadNews getUpload() {
         return upload;
     }
 
-    public void setUpload(Upload upload) {
+    public void setUpload(UploadNews upload) {
         this.upload = upload;
     }
     

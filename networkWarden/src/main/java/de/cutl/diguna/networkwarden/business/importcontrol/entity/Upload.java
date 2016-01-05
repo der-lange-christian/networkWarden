@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -20,8 +19,7 @@ public class Upload {
     private long id;
     @Size(min=1, max=256)
     private String uploadDate;    
-    @NotNull
-    private String language;
+
     @Size(min=1, max=256)
     private String title;
     @Size(min=1)
@@ -37,9 +35,8 @@ public class Upload {
     public Upload() {
     }
 
-    public Upload(String date, String language, String title, String fileName) {
+    public Upload(String date, String title, String fileName) {
         this.uploadDate = date;
-        this.language = language;
         this.title = title;
         this.fileName = fileName;
     }
@@ -48,9 +45,6 @@ public class Upload {
         return uploadDate;
     }
 
-    public String getLanguage() {
-        return language;
-    }
 
     public String getTitle() {
         return title;
@@ -66,10 +60,6 @@ public class Upload {
 
     public void setUploadDate(String date) {
         this.uploadDate = date;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 
     public void setTitle(String title) {
