@@ -1,15 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Login Error</title>
     </h:head>
     <h:body>
-        <h3 style="color:red; font-weight: bold;">Sorry, Access Denied</h3>
-        <p>Your credentials could not be verified or you are not authorized to
-            view the content you desire.</p>
-        <p><h:link outcome="/index" value="To Home Page" /></p>
+        <ui:composition template="WEB-INF/template.xhtml">
+            <ui:define name="logo">
+                <img style="padding-left:5px; padding-right:15px; padding-top:5px" id="header-image" src="../resources/vol_logo.png" alt="header" align="left" />
+            </ui:define>
+            <ui:define name="header">
+                <a href="../index.xhtml">back</a>
+            </ui:define>
+            <ui:define name="content">
+                <h3 style="color:red; font-weight: bold;">Sorry, Access Denied</h3>
+                <p>Your credentials could not be verified or you are not authorized to
+                    view the content you desire.</p>
+                <p><h:link outcome="/index" value="To Home Page" /></p>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
