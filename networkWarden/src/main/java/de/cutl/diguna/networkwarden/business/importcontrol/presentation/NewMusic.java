@@ -43,7 +43,7 @@ public class NewMusic extends Uploader {
     
     public Object save() throws Exception {
         
-        File savedFile = saveFile(file, config.getNewNewsDestinationFolder());
+        File savedFile = saveFile(file, config.getNewMusicDestinationFolder());
         boolean elementMissing = false;
         System.out.println("album-name: \"" + upload.getAlbumName() + "\"");
         System.out.println("album-name: \"" + upload.getArtist() + "\"");

@@ -45,7 +45,7 @@ public class NewAdvertisement extends Uploader {
     
     public Object save() throws Exception {
         
-        File savedFile = saveFile(file, config.getNewNewsDestinationFolder());
+        File savedFile = saveFile(file, config.getNewAdvertisementDestinationFolder());
         if (savedFile == null) {
             showValidaionError("file", "you have forgotten to add a file");
         } else {

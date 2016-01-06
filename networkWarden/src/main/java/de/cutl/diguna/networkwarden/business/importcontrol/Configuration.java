@@ -75,6 +75,18 @@ public class Configuration {
         return config.getProperty("newNewsDestinationFolder", "not configured");
     }
     
+    public String getNewAdvertisementDestinationFolder() {
+        return config.getProperty("newAdvertisementDestinationFolder", "not configured");
+    }
+    
+    public String getNewMusicDestinationFolder() {
+        return config.getProperty("newMusicDestinationFolder", "not configured");
+    }
+    
+    public String getNewTalkshowDestinationFolder() {
+        return config.getProperty("newTalkshowDestinationFolder", "not configured");
+    }
+    
     public String getDatabase() {
         return config.getProperty("database", "prod");
     }
