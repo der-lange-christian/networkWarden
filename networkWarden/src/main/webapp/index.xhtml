@@ -12,18 +12,17 @@
             </ui:define>
             <ui:define name="content">
                 <h:form>
-                    Test: <h:inputText value="#{index.test}" />
-                    <h:commandButton value="Save" action="#{index.save}" />
-                    <br />
-                    <h:commandButton value="News" action="#{index.news}" />
-                    <br />
-                    <h:commandButton value="Talkshow" action="#{index.talkshow}" />
-                    <br />
-                    <h:commandButton value="Advertisement" action="#{index.advertisement}" />
-                    <br />
-                    <h:commandButton value="Music" action="#{index.music}" />
-                    <br />
-                    <h:commandButton value="Show Uplodas" action="#{index.showuploads}" />
+                    <h:outputLabel>Choose what you want to upload:</h:outputLabel>
+                    <ul>
+                        <li><h:commandButton value="News" action="#{index.news}" /></li>
+                        <li><h:commandButton value="Talkshow" action="#{index.talkshow}" /></li>
+                        <li><h:commandButton value="Advertisement" action="#{index.advertisement}" /></li>
+                        <li><h:commandButton value="Music" action="#{index.music}" /></li>
+                    </ul>
+                    <h:outputLabel>Download overview:</h:outputLabel>
+                    <ul>
+                        <li><h:commandButton value="Show Uplodas" action="#{index.showuploads}" /></li>
+                    </ul>
                 </h:form>
             </ui:define>
         </ui:composition>
