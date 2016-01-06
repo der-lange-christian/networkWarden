@@ -31,7 +31,7 @@ public class Configuration {
     public static final String DB_PROD = "diguna";
     
     
-    public static final String DATA_BASE = DB_TEST_DROP_AND_CREATE;
+    public static final String DATA_BASE = DB_TEST;
     public static final String DATA_SOURCE = "jdbc/" + DATA_BASE;
     
     

@@ -120,6 +120,9 @@ Anwendung auf der TEST-DB gelaufen ist):
 ```bash
 cd $PAYARA_HOME
 javadb/bin/dblook -d 'jdbc:derby://localhost:1527/test;user=app;password=app;'
+
+
+bin/dblook -d 'jdbc:derby://localhost:1527/diguna;user=APP;password=APP;'
 ```
 
 
