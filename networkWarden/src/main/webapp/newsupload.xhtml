@@ -2,22 +2,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>uploads</title>
     </h:head>
-    <h:body>
-        <h1>News Upload</h1>
-        <h:form>
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                <p:outputLabel for="date" value="Date:" />
-                <p:inputMask id="date" value="#{newsupload.date}" placeholder="yyyy_mm_dd" mask="9999_99_99"/>
-            </h:panelGrid>
-            <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                          multiple="true" update="messages" sizeLimit="100000000" fileLimit="3" allowTypes="/(\.|\/)(mp3)$/" />
+    <body>
+        <ui:composition template="WEB-INF/template.xhtml">
+            <ui:define name="content">
+                <h1>uploads</h1>
+                <h:form>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="date" value="Date:" />
+                        <p:inputMask id="date" value="#{newsupload.date}" placeholder="yyyy_mm_dd" mask="9999_99_99"/>
+                    </h:panelGrid>
+                    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                  multiple="true" update="messages" sizeLimit="100000000" fileLimit="3" allowTypes="/(\.|\/)(mp3)$/" />
 
-            <p:growl id="messages" showDetail="true" />
-        </h:form>
-    </h:body>
+                    <p:growl id="messages" showDetail="true" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
 </html>
 
