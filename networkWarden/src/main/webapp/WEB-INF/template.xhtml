@@ -16,7 +16,12 @@
             <div id="line2" style="background: #FF3333; height: 8px; "></div>
             <div id="line" style="background: #006600; height: 77px; margin-top: 4px">
                 <img style="padding-left:5px; padding-right:15px; padding-top:5px" id="header-image" src="resources/vol_logo.png" alt="header" align="left" />
-                <h1 style="color: white; margin-top: 5px;padding-top: 5px;padding-left: 5px;"><a href="..">back</a></h1>
+                <h1 style="color: white; margin-top: 5px;padding-top: 5px;padding-left: 5px;">
+                    <ui:insert name="header">
+                        <a href="..">back</a>
+                    </ui:insert>
+                    
+                </h1>
             </div>
             <div id="content" style="padding: 5px">
                 <ui:insert name="content">
