@@ -4,10 +4,14 @@ import de.cutl.diguna.networkwarden.business.importcontrol.entity.Upload;
 import de.cutl.diguna.networkwarden.business.importcontrol.entity.UploadNews;
 import static de.cutl.diguna.networkwarden.business.importcontrol.presentation.Uploader.NOW;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -53,6 +57,7 @@ public class NewNews extends Uploader {
             up.setFilePath(savedFile.getAbsolutePath());
             LocalDateTime now = LocalDateTime.now();
             up.setUploadTime(now.format(NOW));
+            up.setFileName(savedFile.getName());
             
             long size = savedFile.length();
             System.out.println("sie: " + size);
@@ -62,6 +67,15 @@ public class NewNews extends Uploader {
         }
         
         return null;
+    }
+    
+    public StreamedContent download(String fileWithPath) throws FileNotFoundException {
+        FileInputStream fis = null;
+        System.out.println("---- download: " + fileWithPath);
+        File downloadFile = new File(fileWithPath);
+        fis = new FileInputStream(downloadFile);
+        StreamedContent stream = new DefaultStreamedContent(fis, "application/mp3", downloadFile.getName());
+        return stream;
     }
 
 }

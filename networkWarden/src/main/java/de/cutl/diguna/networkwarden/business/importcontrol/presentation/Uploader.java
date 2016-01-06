@@ -88,15 +88,4 @@ public class Uploader {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, content, content);
         FacesContext.getCurrentInstance().addMessage("upload_form:" + id, message);
     }
-    
-    
-    
-    public StreamedContent download(String fileWithPath) throws FileNotFoundException {
-        FileInputStream fis = null;
-        System.out.println("---- download: " + fileWithPath);
-        File downloadFile = new File(fileWithPath);
-        fis = new FileInputStream(downloadFile);
-        StreamedContent stream = new DefaultStreamedContent(fis, "application/mp3", downloadFile.getName());
-        return stream;
-    }
 }

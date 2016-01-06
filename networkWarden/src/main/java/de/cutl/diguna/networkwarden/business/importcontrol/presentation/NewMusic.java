@@ -66,6 +66,8 @@ public class NewMusic extends Uploader {
             up.setFilePath(savedFile.getAbsolutePath());
             LocalDateTime now = LocalDateTime.now();
             up.setUploadTime(now.format(NOW));
+            up.setAlbumName(upload.getAlbumName());
+            up.setArtist(upload.getArtist());
             
             long size = savedFile.length();
             System.out.println("sie: " + size);

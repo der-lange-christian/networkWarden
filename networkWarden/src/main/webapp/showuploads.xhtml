@@ -19,9 +19,9 @@
                                  liveResize="true">
                         <p:column resizable="true">
                             <f:facet name="header">
-                                <h:outputText value="Date" />
+                                <h:outputText value="Type" />
                             </f:facet>
-                            <h:outputText value="#{upload.uploadDate}" />
+                            <h:outputText value="#{upload.type}" />
                         </p:column>
                         <p:column resizable="true">
                             <f:facet name="header">
@@ -55,14 +55,17 @@
                         </p:column>
                         <p:column resizable="true">
                             <f:facet name="header">
-                                <h:outputText value="File" />
+                                <h:outputText value="File-Name" />
                             </f:facet>
                             <h:outputText value="#{upload.fileName}" />
                         </p:column>
 
                         <p:column>
-                            <h:commandButton value="Download">
-                                <p:fileDownload value="#{newNews.download(upload.filePath)}" />
+                            <f:facet name="header">
+                                <h:outputText value="Download" />
+                            </f:facet>
+                            <h:commandButton value="Download" rendered="#{showUploads.showDownload(upload)}">
+                                <p:fileDownload value="#{showUploads.download(upload.filePath)}" />
                             </h:commandButton>
                         </p:column>
                     </p:dataTable>

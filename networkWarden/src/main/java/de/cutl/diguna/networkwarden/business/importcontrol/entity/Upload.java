@@ -112,4 +112,13 @@ public class Upload {
     public void setSizeInByte(long sizeInByte) {
         this.sizeInByte = sizeInByte;
     }
+    
+    public String getType() {
+        String fullQualifiedClassName = this.getClass().getName();
+        int startOfClassName = fullQualifiedClassName.lastIndexOf(".");
+        startOfClassName += 1; // removing the "." 
+        String simpleName = fullQualifiedClassName.substring(startOfClassName);
+        return simpleName;
+    }
+    
 }
