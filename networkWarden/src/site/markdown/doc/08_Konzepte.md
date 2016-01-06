@@ -234,6 +234,26 @@ für die Darstellung verwendet.
 
 #### Sicherheit
 
+Für die Sicherheit wird JAAS (Java Authentication and Authorization Service)
+verwendet.
+
+Hinweise:
+
+- http://incepttechnologies.blogspot.ug/p/jee-6-security.html
+    - FileRealm
+    - Einfacher -> Konfig über [Admin-Console](http://localhost:4848/)
+    - Configuration > server-config > Security > Realms > New
+    - Name: LoginRealm
+    - Class Name: com.sun.enterprise.security.auth.realm.file.FileRealm
+    - JAAS Context: fileRealm
+    - Key File: ${com.sun.aas.instanceRoot}/users.txt
+    - Assign Groups: user,admin
+
+
+- https://www.youtube.com/watch?v=1xsU6juUZd0
+    - DatabaseRealm
+
+
 #### Kommunikation und Integration mit anderen IT-Systemen
 
 #### Verteilung

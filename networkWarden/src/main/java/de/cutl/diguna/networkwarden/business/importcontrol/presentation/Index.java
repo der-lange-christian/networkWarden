@@ -47,6 +47,14 @@ public class Index {
         return Pages.ShowUploads.getPageName();
     }
     
+    public Object userIndex() {
+        return Pages.user_Index.getPageName();
+    }
+    
+    public Object adminIndex() {
+        return Pages.admin_Index.getPageName();
+    }
+    
     public Object save() {
         return null;
     }

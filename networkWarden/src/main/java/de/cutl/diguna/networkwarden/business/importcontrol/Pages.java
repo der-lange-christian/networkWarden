@@ -1,9 +1,12 @@
 package de.cutl.diguna.networkwarden.business.importcontrol;
 
+import javax.enterprise.inject.Model;
+
 /**
  *
  * @author chris
  */
+@Model
 public enum Pages {
 
     NewIndex,
@@ -11,12 +14,14 @@ public enum Pages {
     NewTalkshow,
     NewAdvertisement,
     NewMusic,
-    ShowUploads;
+    ShowUploads,
+    user_Index,
+    admin_Index;
     
     private final String pageName;
     
     Pages() {
-        pageName = this.name().toLowerCase();
+        pageName = this.name().toLowerCase().replace("_", "/");
     }
     
     public String getPageName() {

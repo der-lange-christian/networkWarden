@@ -24,6 +24,16 @@
                         <li><h:commandButton value="Show Uplodas" action="#{index.showuploads}" /></li>
                     </ul>
                 </h:form>
+                
+                <h:form>
+                    <h:outputLabel>User:</h:outputLabel>
+                    <ul>
+                        <li><a href="user/index.xhtml">user</a></li>
+                        <li><a href="admin/index.xhtml">admin</a></li>
+                        <li><h:commandLink action="#{logoutBean.logout}" value="logout" /></li>
+                    </ul>
+                    
+                </h:form>
             </ui:define>
         </ui:composition>
     </body>
